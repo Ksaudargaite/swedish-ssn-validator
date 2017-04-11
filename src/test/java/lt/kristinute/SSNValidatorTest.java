@@ -23,6 +23,19 @@ public class SSNValidatorTest {
      @Test
     public void requiresDigits() throws Exception {
         assertFalse(ssnValidator.isValidSwedishSsn("861116306X"));
+        assertFalse(ssnValidator.isValidSwedishSsn("X611163067"));
+    }
+
+    @Test
+    public void allowsDashBeforeFinalFourDigits() throws Exception {
+        assertTrue(ssnValidator.isValidSwedishSsn("861116-3067"));
+    }
+
+    @Test
+    public void doesNotAllowsDashInOtherPlaces() throws Exception {
+        assertFalse(ssnValidator.isValidSwedishSsn("86111-63067"));
+        assertFalse(ssnValidator.isValidSwedishSsn("8611163-067"));
+        assertFalse(ssnValidator.isValidSwedishSsn("-8611163067"));
     }
 
 }

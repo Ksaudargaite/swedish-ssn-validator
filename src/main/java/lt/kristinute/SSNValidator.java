@@ -7,7 +7,12 @@ public class SSNValidator {
         int multipliedNumberBy1or2;
         int sumOf9Numbers = 0;
         int valid10thNumber;
-        if (ssn.length() != 10 || !ssn.matches("^[0-9]+$")) return false;
+        if (ssn.matches("(\\d{6}-\\d{4})")) {
+            ssn = ssn.replaceAll("-", "");
+        }
+        if ((ssn.length() != 10 || !ssn.matches("[0-9]+"))) {
+            return false;
+        }
         for (int i = 0; i < ssn.length() - 1; ++i) {
             int numberAtIndexI = Integer.parseInt(ssn.substring(i, i + 1));
             if (i % 2 == 0) {
